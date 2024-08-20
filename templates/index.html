@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <link rel="icon" type="image/png" href="https://png.pngtree.com/png-clipart/20190705/original/pngtree-vector-car-icon-png-image_4277476.jpg">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="glow-text">Car Price Prediction</h1>
+        <h2>Made by Emon Hasan</h2>
+        <form action="/predict" method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="Car Company">Car Company:</label>
+                    <select name="CarName" id="CarName" class="form-control">
+                        {% for carName in CarNames %}
+                        <option value="{{ carName }}" {% if carName == CarName %}selected{% endif %}>{{ carName }}</option>
+                        {% endfor %}
+                    </select>    
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="fueltype">Fuel Type:</label>
+                    <select name="fueltype" id="fueltype" class="form-control">
+                        {% for fueltype in fueltypes %}
+                        <option value="{{ fueltype }}"{% if fueltype == fueltype %}selected{% endif %}>{{ fueltype }}</option>
+                        {% endfor %}
+                    <select>    
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="aspiration">Aspiration:</label>
+                    <select name="aspiration" id="aspiration" class="form-control">
+                        {% for aspiration in aspirations %}
+                        <option value="{{ aspiration }}"{% if aspiration == aspiration %}selected{% endif %}>{{ aspiration }}</option>
+                        {% endfor %}
+                    </select>
+                </div>                 
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="doornumber">Door Number:</label>
+                    <select name="doornumber" id="doornumber" class="form-control">
+                        {% for doornumber in doornumbers %}
+                        <option value="{{ doornumber }}"{% if doornumber == doornumber %}selected{% endif %}>{{ doornumber }}</option>
+                        {% endfor %}
+                    </select>    
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="carbody">Car Body:</label>
+                    <select name="carbody" id="carbody" class="form-control">
+                        {% for carbody in carbodys %}
+                        <option value="{{ carbody }}"{% if carbody == carbody %}selected{% endif %}>{{ carbody }}</option>
+                        {% endfor %}
+                    <select>    
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="drivewheel">Drive Wheel:</label>
+                    <select name="drivewheel" id="drivewheel" class="form-control">
+                        {% for drivewheel in drivewheels %}
+                        <option value="{{ drivewheel }}"{% if drivewheel == drivewheel %}selected{% endif %}>{{ drivewheel }}</option>
+                        {% endfor %}
+                    </select>
+                </div>                 
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="enginelocation">Engine Location:</label>
+                    <select name="enginelocation" id="enginelocation" class="form-control">
+                        {% for enginelocation in enginelocations %}
+                        <option value="{{ enginelocation }}" {% if enginelocation == enginelocation %}selected{% endif %}>{{ enginelocation }}</option>
+                        {% endfor %}
+                    </select>    
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="wheelbase">Wheel Base:</label>
+                    <input type="number" step="0.1" name="wheelbase" id="wheelbase" class="form-control" placeholder="Ex: 86.6-120.9" value="{{ wheelbase }}" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="carlength">Car Length:</label>
+                    <input type="number" step="0.1" name="carlength" id="carlength" class="form-control" placeholder="Ex: 141.1-208.1" value="{{ carlength }}" required>
+                </div>       
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="carwidth">Car Width:</label>
+                    <input type="number" step="0.1" name="carwidth" id="carwidth" class="form-control" placeholder="Ex: 60.3-72.3" value="{{ carwidth }}" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="carheight">Car Height:</label>
+                    <input type="number" step="0.1" name="carheight" id="carheight" class="form-control" placeholder="Ex: 47.8-59.8" value="{{ carheight }}" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="curbweight">Curb Weight:</label>
+                    <input type="number" step="1" name="curbweight" id="curbweight" class="form-control" placeholder="Ex: 1488-4066" value="{{ curbweight }}" required>
+                </div>    
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="enginetype">Engine Type:</label>
+                    <select name="enginetype" id="enginetype" class="form-control">
+                        {% for enginetype in enginetypes %}
+                        <option value="{{ enginetype }}" {% if enginetype == enginetype %}selected{% endif %}>{{ enginetype }}</option>
+                        {% endfor %}
+                    </select>    
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="cylindernumber">Cylinder Number:</label>
+                    <select name="cylindernumber" id="cylindernumber" class="form-control">
+                        {% for cylindernumber in cylindernumbers %}
+                        <option value="{{ cylindernumber }}" {% if cylindernumber == cylindernumber %}selected{% endif %}>{{ cylindernumber }}</option>
+                        {% endfor %}
+                    </select>    
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="enginesize">Engine Size:</label>
+                    <input type="number" step="1" name="enginesize" id="enginesize" class="form-control" placeholder="Ex: 61-326" value="{{ enginesize }}" required>
+                </div>       
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="fuelsystem">Fuel system:</label>
+                    <select name="fuelsystem" id="fuelsystem" class="form-control">
+                        {% for fuelsystem in fuelsystems %}
+                        <option value="{{ fuelsystem }}" {% if fuelsystem == fuelsystem %}selected{% endif %}>{{ fuelsystem }}</option>
+                        {% endfor %}
+                    </select>    
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="boreratio">Bore Ratio:</label>
+                    <input type="number" step="0.1" name="boreratio" id="boreratio" class="form-control" placeholder="Ex: 2.54-3.94" value="{{ boreratio }}" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="stroke">Stroke:</label>
+                    <input type="number" step="0.1" name="stroke" id="stroke" class="form-control" placeholder="Ex: 2.07-4.17" value="{{ stroke }}" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="compressionratio">Compression Ratio:</label>
+                    <input type="number" step="0.1" name="compressionratio" id="compressionratio" class="form-control" placeholder="Ex: 7.0-23.0" value="{{ compressionratio }}" required>
+                </div>       
+                <div class="form-group col-md-4">
+                    <label for="horsepower">Horse Power:</label>
+                    <input type="number" step="1" name="horsepower" id="horsepower" class="form-control" placeholder="Ex: 48-288" value="{{ horsepower }}" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="peakrpm">Peak RPM:</label>
+                    <input type="number" step="1" name="peakrpm" id="peakrpm" class="form-control" placeholder="Ex: 4150-6600" value="{{ peakrpm }}" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="citympg">City MPG:</label>
+                    <input type="number" step="1" name="citympg" id="citympg" class="form-control" placeholder="Ex: 13-49" value="{{ citympg }}" required>
+                </div>       
+                <div class="form-group col-md-4">
+                    <label for="highwaympg">Highway MPG:</label>
+                    <input type="number" step="1" name="highwaympg" id="highwaympg" class="form-control" placeholder="Ex: 16-54" value="{{ highwaympg }}" required>
+                </div> 
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <h2 class="last">The predicted price of this configuration is &dollar; {{ prediction }} Dollar</h2>
+        {% endif %}
+
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Emon Hasan. All Rights Reserved. | <a href="https://github.com/Md-Emon-Hasan" target="_blank">GitHub</a></p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

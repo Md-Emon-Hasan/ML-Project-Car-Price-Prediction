@@ -1,0 +1,201 @@
+/* Base Styles */
+body {
+    background-image: url('https://images.pexels.com/photos/18509922/pexels-photo-18509922/free-photo-of-model-posing-in-front-of-a-blue-lamborghini-urus-on-a-bridge-in-dubai.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    padding: 40px;
+    margin: 60px auto;
+    max-width: 1000px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+    position: relative;
+}
+
+/* Header Styles */
+h1.glow-text {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    color: #333;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+h2 {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: #dadada;
+    font-size: 1.2rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Buttons */
+button.btn-primary {
+    background: linear-gradient(135deg, #1d72b8, #1a1a1a);
+    border: none;
+    padding: 7px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    border-radius: 30px;
+    transition: all 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+button.btn-primary:hover {
+    background: linear-gradient(135deg, #1a1a1a, #1d72b8);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+button.btn-primary:active {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+}
+
+/* Form Styles */
+input.form-control, select.form-control {
+    border-radius: 30px;
+    /* padding: 15px; */
+    border: 2px solid #ddd;
+    background: #f9f9f9;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+input.form-control:focus, select.form-control:focus {
+    border-color: #1d72b8;
+    box-shadow: 0 0 8px rgba(29, 114, 184, 0.5);
+    outline: none;
+    background: #ffffff;
+}
+
+input.form-control:hover, select.form-control:hover {
+    transform: scale(1.02);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background: #1a1a1a;
+    color: #ffffff;
+    border-radius: 12px;
+    margin-top: 40px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.footer a {
+    color: #1d72b8;
+    text-decoration: none;
+    /* font-weight: 600; */
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    h1.glow-text {
+        font-size: 2.5rem;
+    }
+
+    button.btn-primary {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    h1.glow-text {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 20px 10px;
+    }
+
+    button.btn-primary {
+        font-size: 0.9rem;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+}
+/* Hide spin buttons in Chrome, Safari, Edge */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide spin buttons in Firefox */
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+/* Hide spin buttons in Internet Explorer 10+ */
+input[type="number"]::-ms-clear {
+    display: none;
+}
